@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::on_startbutton_clicked()
 {
     mysound =new QMediaPlayer();
-    mysound->setMedia(QUrl("qrc:/sounds/mysounds.mp3"));
+    mysound->setMedia(QUrl("qrc:/sounds/mysound.mp3"));
     mysound->play();
     //count the time
     starttime();
@@ -263,6 +263,9 @@ void MainWindow::counttime()
         ui->smallgirl->move(z);
         ui->blue->move(z);
         ui->forevergirl->move(z);
+        ui->good->move(z);
+        ui->great->move(z);
+        ui->hithit->move(z);
         timer->stop();
         timer13->stop();
         mysound->stop();
@@ -286,64 +289,133 @@ void MainWindow::moveforevergirl()
     QPoint z(xforevergirl,yforevergirl);
     ui->blue->move(z);
     ui->forevergirl->move(z);
+    if(xforevergirl<=150&&xforevergirl>-150)
+    {
+        ui->hithit->move(QPoint(150,0));
+    }
+    if(xforevergirl==150)
+    {
+        ui->hithit->move(QPoint(800,0));
+    }
 }
 
 //calculate the score
 void MainWindow::keyPressEvent(QKeyEvent*event)
 {
+    //當時間>0可以執行下列動作
     if(t>0)
     {
+        //按下s後會做的動作
         if(event->key()== Qt::Key_S)
         {
+            //發出鼓聲
             QMediaPlayer *mysound =new QMediaPlayer();
             mysound->setMedia(QUrl("qrc:/sounds/don.mp3"));
             mysound->play();
             int drum=30;
+            int num=0;
+            //顯示大寫s ,表示按s按鍵
             ui->s1->move(QPoint(-50,280));
+            //當在60和10之間的範圍按下按鍵
             if(xgirl1<61&&xgirl1>9)
             {
+                //分數+1
                 score=score+1;
                 ui->score->setText(QString::number(score));
-                xgirl1=(rand()%90)*10+800;
-                ui->button1->move(QPoint(-150,150));
+                //顯示有吃到的圖
+                ui->button1->move(QPoint(-150,250));
+                //在40和20之間的範圍按下按鍵
+                if(xgirl1<=40&&xgirl1>=20)
+                {
+                   //分數再+1
+                   score=score+1;
+                   num=1;
+                   ui->score->setText(QString::number(score));
+                }
+                //在30按下按鍵
                 if(drum==xgirl1)
                 {
+                    xsmallgirl=180;
+                    //分數再+2
                     score=score+2;
                     ui->score->setText(QString::number(score));
+                    //顯示小初音
                     timer12 = new QTimer(this);
                     connect(timer12,SIGNAL(timeout()),this,SLOT(movesmallgirl()));
                     timer12->start(100);
                 }
+                if(num==0)
+                {
+                    ui->good->move(QPoint(100,250));
+                }
+                if(num==1)
+                {
+                    ui->great->move(QPoint(100,250));
+                }
+                //移動girl(消除)
+                xgirl1=(rand()%90)*10+800;
             }
             else if(xgirl2<61&&xgirl2>9)
             {
                 score=score+1;
                 ui->score->setText(QString::number(score));
-                xgirl2=(rand()%90)*10+900;
                 ui->button1->move(QPoint(-150,150));
+                if(xgirl2<=40&&xgirl2>=20)
+                {
+                   //分數再+1
+                   score=score+1;
+                   num=1;
+                   ui->score->setText(QString::number(score));
+                }
                 if(drum==xgirl2)
                 {
+                    xsmallgirl=180;
                     score=score+2;
                     ui->score->setText(QString::number(score));
                     timer12 = new QTimer(this);
                     connect(timer12,SIGNAL(timeout()),this,SLOT(movesmallgirl()));
                     timer12->start(100);
                 }
+                if(num==0)
+                {
+                    ui->good->move(QPoint(100,250));
+                }
+                if(num==1)
+                {
+                    ui->great->move(QPoint(100,250));
+                }
+                xgirl2=(rand()%90)*10+900;
             }
             else if(xgirl1_2<61&&xgirl1_2>9)
             {
                 score=score+1;
-                ui->score->setText(QString::number(score));
-                xgirl1_2=(rand()%90)*10+1200;
+                ui->score->setText(QString::number(score));                
                 ui->button1->move(QPoint(-150,150));
+                if(xgirl1_2<=40&&xgirl1_2>=20)
+                {
+                   //分數再+1
+                   score=score+1;
+                   num=1;
+                   ui->score->setText(QString::number(score));
+                }
                 if(drum==xgirl1_2)
                 {
+                    xsmallgirl=180;
                     score=score+2;
                     ui->score->setText(QString::number(score));
                     timer12 = new QTimer(this);
                     connect(timer12,SIGNAL(timeout()),this,SLOT(movesmallgirl()));
                     timer12->start(100);
                 }
+                if(num==0)
+                {
+                    ui->good->move(QPoint(100,250));
+                }
+                if(num==1)
+                {
+                    ui->great->move(QPoint(100,250));
+                }
+                xgirl1_2=(rand()%90)*10+1200;
             }
             QTimer *timer8 = new QTimer(this);
             connect(timer8,SIGNAL(timeout()),this,SLOT(movethebutton()));
@@ -353,6 +425,11 @@ void MainWindow::keyPressEvent(QKeyEvent*event)
             connect(timer11,SIGNAL(timeout()),this,SLOT(movethebutton4()));
             timer11->setSingleShot(true);
             timer11->start(75);
+            QTimer *timer13 = new QTimer(this);
+            connect(timer13,SIGNAL(timeout()),this,SLOT(movethebutton5()));
+            timer13->setSingleShot(true);
+            timer13->start(75);
+
         }
         else if(event->key()== Qt::Key_K)
         {
@@ -360,51 +437,100 @@ void MainWindow::keyPressEvent(QKeyEvent*event)
             mysound->setMedia(QUrl("qrc:/sounds/don.mp3"));
             mysound->play();
             int drum2=30;
+            int num=0;
             ui->k1->move(QPoint(-50,280));
             if(xboy1<61&&xboy1>9)
             {
                  score=score+1;
-                 ui->score->setText(QString::number(score));
-                 xboy1=(rand()%90)*10+1000;
-                 ui->button1->move(QPoint(-150,150));
+                 ui->score->setText(QString::number(score));                 
+                 ui->button1->move(QPoint(-150,250));
+                 if(xboy1<=40&&xboy1>=20)
+                 {
+                    //分數再+1
+                    score=score+1;
+                    num=1;
+                    ui->score->setText(QString::number(score));
+                 }
                  if(drum2==xboy1)
                  {
+                     xsmallgirl=180;
                      score=score+2;
                      ui->score->setText(QString::number(score));
                      timer12 = new QTimer(this);
                      connect(timer12,SIGNAL(timeout()),this,SLOT(movesmallgirl()));
                      timer12->start(100);
                  }
+                 if(num==0)
+                 {
+                     ui->good->move(QPoint(100,250));
+                 }
+                 if(num==1)
+                 {
+                     ui->great->move(QPoint(100,250));
+                 }
+                 xboy1=(rand()%90)*10+1000;
             }
             else if(xboy2<61&&xboy2>19)
             {
                  score=score+1;
-                 ui->score->setText(QString::number(score));
-                 xboy2=(rand()%90)*10+1100;
-                 ui->button1->move(QPoint(-150,150));
+                 ui->score->setText(QString::number(score));                 
+                 ui->button1->move(QPoint(-150,250));
+                 if(xboy2<=40&&xboy2>=20)
+                 {
+                    //分數再+1
+                    score=score+1;
+                    num=1;
+                    ui->score->setText(QString::number(score));
+                 }
                  if(drum2==xboy2)
                  {
+                     xsmallgirl=180;
                      score=score+2;
                      ui->score->setText(QString::number(score));
                      timer12 = new QTimer(this);
                      connect(timer12,SIGNAL(timeout()),this,SLOT(movesmallgirl()));
                      timer12->start(100);
                  }
+                 if(num==0)
+                 {
+                     ui->good->move(QPoint(100,250));
+                 }
+                 if(num==1)
+                 {
+                     ui->great->move(QPoint(100,250));
+                 }
+                 xboy2=(rand()%90)*10+1100;
             }
             else if(xboy1_2<61&&xboy1_2>9)
             {
                  score=score+1;
                  ui->score->setText(QString::number(score));
-                 xboy1_2=(rand()%90)*10+1300;
-                 ui->button1->move(QPoint(-150,150));
+                 ui->button1->move(QPoint(-150,250));
+                 if(xboy1_2<=40&&xboy1_2>=20)
+                 {
+                     //分數再+1
+                     score=score+1;
+                     num=1;
+                     ui->score->setText(QString::number(score));
+                 }
                  if(drum2==xboy1_2)
                  {
+                     xsmallgirl=180;
                      score=score+2;
                      ui->score->setText(QString::number(score));
                      timer12 = new QTimer(this);
                      connect(timer12,SIGNAL(timeout()),this,SLOT(movesmallgirl()));
                      timer12->start(100);
                  }
+                 if(num==0)
+                 {
+                     ui->good->move(QPoint(100,250));
+                 }
+                 if(num==1)
+                 {
+                     ui->great->move(QPoint(100,250));
+                 }
+                 xboy1_2=(rand()%90)*10+1300;
             }
             QTimer *timer8 = new QTimer(this);
             connect(timer8,SIGNAL(timeout()),this,SLOT(movethebutton()));
@@ -414,6 +540,10 @@ void MainWindow::keyPressEvent(QKeyEvent*event)
             connect(timer11,SIGNAL(timeout()),this,SLOT(movethebutton3()));
             timer11->setSingleShot(true);
             timer11->start(75);
+            QTimer *timer13 = new QTimer(this);
+            connect(timer13,SIGNAL(timeout()),this,SLOT(movethebutton5()));
+            timer13->setSingleShot(true);
+            timer13->start(125);
         }
         else if(event->key()== Qt::Key_Space)
         {
@@ -438,7 +568,7 @@ void MainWindow::keyPressEvent(QKeyEvent*event)
         }
     }
 }
-
+//小初音
 void MainWindow::movesmallgirl()
 {
     c=c+1;
@@ -455,10 +585,18 @@ void MainWindow::movesmallgirl()
     ui->smallgirl->move(z);
     if(xsmallgirl>=800)
     {
-       timer12->stop();
-       xsmallgirl=180;
+       timer12->stop();      
     }
 }
+void MainWindow::movethebutton5()
+{
+    if(t>0)
+    {
+        ui->great->move(QPoint(-50,250));
+        ui->good->move(QPoint(-50,250));
+    }
+}
+//s
 void MainWindow::movethebutton4()
 {
     if(t>0)
@@ -466,6 +604,7 @@ void MainWindow::movethebutton4()
         ui->s1->move(QPoint(210,280));
     }
 }
+//k
 void MainWindow::movethebutton3()
 {
     if(t>0)
@@ -473,6 +612,7 @@ void MainWindow::movethebutton3()
         ui->k1->move(QPoint(270,280));
     }
 }
+//space
 void MainWindow::movethebutton2()
 {
     if(t>0)
@@ -480,7 +620,7 @@ void MainWindow::movethebutton2()
         ui->space1->move(QPoint(330,280));
     }
 }
-
+//button
 void MainWindow::movethebutton()
 {
     if(t>0)

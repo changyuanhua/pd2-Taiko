@@ -251,8 +251,8 @@
    <widget class="QPushButton" name="restart">
     <property name="geometry">
      <rect>
-      <x>100</x>
-      <y>300</y>
+      <x>150</x>
+      <y>350</y>
       <width>200</width>
       <height>60</height>
      </rect>
@@ -272,8 +272,8 @@
    <widget class="QPushButton" name="endgame">
     <property name="geometry">
      <rect>
-      <x>500</x>
-      <y>300</y>
+      <x>450</x>
+      <y>350</y>
       <width>200</width>
       <height>60</height>
      </rect>
@@ -508,6 +508,71 @@
      <pixmap resource="img.qrc">:/img/s1.png</pixmap>
     </property>
    </widget>
+   <widget class="QLabel" name="great">
+    <property name="geometry">
+     <rect>
+      <x>-50</x>
+      <y>250</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="img.qrc">:/img/great.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QLabel" name="good">
+    <property name="geometry">
+     <rect>
+      <x>-50</x>
+      <y>250</y>
+      <width>50</width>
+      <height>50</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="img.qrc">:/img/good.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QLabel" name="hithit">
+    <property name="geometry">
+     <rect>
+      <x>800</x>
+      <y>0</y>
+      <width>167</width>
+      <height>76</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="img.qrc">:/img/rollballoon.png</pixmap>
+    </property>
+   </widget>
+   <widget class="QLabel" name="backg">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>800</width>
+      <height>600</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap resource="img.qrc">:/img/3.png</pixmap>
+    </property>
+   </widget>
+   <zorder>backg</zorder>
    <zorder>endgame</zorder>
    <zorder>restart</zorder>
    <zorder>playdrum</zorder>
@@ -533,6 +598,9 @@
    <zorder>k1</zorder>
    <zorder>s1</zorder>
    <zorder>space1</zorder>
+   <zorder>great</zorder>
+   <zorder>good</zorder>
+   <zorder>hithit</zorder>
    <zorder>startgame</zorder>
    <zorder>startbutton</zorder>
    <zorder>endbutton</zorder>

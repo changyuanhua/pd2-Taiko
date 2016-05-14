@@ -19,5 +19,9 @@
         <file>s2.png</file>
         <file>space1.png</file>
         <file>space2.png</file>
+        <file>good.png</file>
+        <file>great.png</file>
+        <file>rollballoon.png</file>
+        <file>3.png</file>
     </qresource>
 </RCC>

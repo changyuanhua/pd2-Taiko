@@ -55,6 +55,7 @@ public slots:
     void movethebutton2();
     void movethebutton3();
     void movethebutton4();
+    void movethebutton5();
     void movethebutton();
 private slots:
     void on_startbutton_clicked();
