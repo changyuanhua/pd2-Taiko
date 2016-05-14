@@ -293,7 +293,7 @@ void MainWindow::moveforevergirl()
     {
         ui->hithit->move(QPoint(150,0));
     }
-    if(xforevergirl==150)
+    if(xforevergirl==-150)
     {
         ui->hithit->move(QPoint(800,0));
     }
