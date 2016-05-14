@@ -1,0 +1,23 @@
+<RCC>
+    <qresource prefix="/img">
+        <file>boy1.png</file>
+        <file>boy2.png</file>
+        <file>girl1.png</file>
+        <file>girl2.png</file>
+        <file>taikoplay.png</file>
+        <file>taikostart.jpg</file>
+        <file>drum.png</file>
+        <file>smallgirl.png</file>
+        <file>2.png</file>
+        <file>button1.png</file>
+        <file>button2.png</file>
+        <file>forever.png</file>
+        <file>blue.png</file>
+        <file>k1.png</file>
+        <file>k2.png</file>
+        <file>s1.png</file>
+        <file>s2.png</file>
+        <file>space1.png</file>
+        <file>space2.png</file>
+    </qresource>
+</RCC>
