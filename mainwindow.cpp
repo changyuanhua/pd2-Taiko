@@ -357,7 +357,7 @@ void MainWindow::keyPressEvent(QKeyEvent*event)
             }
             else if(xgirl2<61&&xgirl2>9)
             {
-                score=score+1;
+                score=score+2;
                 ui->score->setText(QString::number(score));
                 ui->button1->move(QPoint(-150,150));
                 if(xgirl2<=40&&xgirl2>=20)
@@ -472,7 +472,7 @@ void MainWindow::keyPressEvent(QKeyEvent*event)
             }
             else if(xboy2<61&&xboy2>19)
             {
-                 score=score+1;
+                 score=score+2;
                  ui->score->setText(QString::number(score));                 
                  ui->button1->move(QPoint(-150,250));
                  if(xboy2<=40&&xboy2>=20)
